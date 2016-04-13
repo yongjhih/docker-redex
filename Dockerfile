@@ -1,8 +1,9 @@
 FROM ubuntu:14.04
 
-ADD . /src
+ADD . /redex
 
-WORKDIR /src
+WORKDIR /redex
+ENV LD_LIBRARY_PATH /usr/local/lib
 
 RUN apt-get update && apt-get install -y git \
     g++ \
@@ -25,4 +26,10 @@ RUN apt-get update && apt-get install -y git \
     libssl-dev \
     libiberty-dev && \
     git submodule update --init && \
-    autoreconf -ivf && ./configure && make && make install
+    mv /redex/third-party/folly /folly && \
+    cd /folly/folly && \
+    autoreconf -ivf && ./configure && make && make install && \
+    cd /redex && \
+    autoreconf -ivf && ./configure && make && make install && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*

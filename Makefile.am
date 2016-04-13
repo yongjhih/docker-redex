@@ -2,8 +2,6 @@ AUTOMAKE_OPTIONS = foreign
 
 CXXFLAGS = --std=gnu++11 -O3 -Wall -g
 
-SUBDIRS = third-party/folly/folly
-
 bin_PROGRAMS = redex-all
 
 bin_SCRIPTS = redex
@@ -46,11 +44,10 @@ includes = \
 	opt/synth \
 	opt/unterface \
 	tools/redex-all \
-	third-party/folly \
 	util
 
 redex_all_CPPFLAGS = $(foreach i, $(includes), -I$(top_srcdir)/$i)
-redex_all_LDADD = -lboost_filesystem -lboost_system -lpthread third-party/folly/folly/.libs/libfolly.a
+redex_all_LDADD = -lboost_filesystem -lboost_system -lpthread -lfolly -ldouble-conversion
 
 redex_all_SOURCES = \
 	configparser/keeprules.cc \

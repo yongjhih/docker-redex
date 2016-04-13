@@ -27,9 +27,6 @@ AX_BOOST_FILESYSTEM
 AX_BOOST_SYSTEM
 AC_CHECK_LIB([z], [adler32], [], [AC_MSG_ERROR([Please install zlib])])
 
-AC_CHECK_LIB([double-conversion],[ceil],[],[AC_MSG_ERROR(
-             [Please install double-conversion library])])
-
 AC_HAVE_LIBRARY([glog],[],[AC_MSG_ERROR(
                 [Please install google-glog library])])
 
