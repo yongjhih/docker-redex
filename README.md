@@ -1,3 +1,8 @@
+[![Docker Pulls](https://img.shields.io/docker/pulls/yongjhih/redex.svg)](https://hub.docker.com/r/yongjhih/redex/)
+[![Docker Stars](https://img.shields.io/docker/stars/yongjhih/redex.svg)](https://hub.docker.com/r/yongjhih/redex/)
+[![Docker Size](https://img.shields.io/imagelayers/image-size/yongjhih/redex/latest.svg)](https://imagelayers.io/?images=yongjhih/redex:latest)
+[![Docker Layers](https://img.shields.io/imagelayers/layers/yongjhih/redex/latest.svg)](https://imagelayers.io/?images=yongjhih/redex:latest)
+
 ReDex: An Android Bytecode Optimizer
 ------------------------------------
 
