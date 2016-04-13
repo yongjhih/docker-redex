@@ -33,3 +33,5 @@ RUN apt-get update && apt-get install -y git \
     autoreconf -ivf && ./configure && make && make install && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+
+CMD ["redex"]

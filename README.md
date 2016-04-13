@@ -9,6 +9,20 @@ source.
 
 # Quick Start Guide
 
+### Docker
+
+```sh
+$ curl -L https://github.com/yongjhih/docker-redex/raw/master/docker-redex > ~/bin/redex
+
+$ ~/bin/redex path/to/your.apk -o path/to/output.apk
+```
+
+or
+
+```sh
+$ docker run -it yongjhih/redex:dev path/to/your.apk -o path/to/output.apk
+```
+
 ### Dependencies
 
 ReDex depends on folly, glog, double-conversion, boost and zlib, and uses
