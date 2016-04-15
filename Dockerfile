@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM yongjhih/android:23
 
 ADD . /redex
 
@@ -24,6 +24,7 @@ RUN apt-get update && apt-get install -y git \
     binutils-dev \
     libjemalloc-dev \
     libssl-dev \
+    python3 \
     libiberty-dev && \
     git submodule update --init && \
     autoreconf -ivf && ./configure && make && make install && \
