@@ -14,8 +14,6 @@ source.
 
 # Quick Start Guide
 
-### Docker
-
 ```sh
 $ curl -L https://github.com/yongjhih/docker-redex/raw/master/docker-redex > ~/bin/redex && chmod a+x ~/bin/redex
 
@@ -23,19 +21,6 @@ $ ~/bin/redex path/to/your.apk -o path/to/output.apk
 ```
 
 # FAQ
-
-## I'm getting "Couldn't find zipalign. See README.md to resolve this"
-
-`zipalign` is an optimization step that is bundled with the Android SDK.  You
-need to tell redex where to find it.  For example, if you installed the SDK at
-`/path/to/android/sdk`, try:
-```
-ANDROID_SDK=/path/to/android/sdk redex [... arguments ...]
-```
-You can alternatively add `zipalign` to your PATH, for example:
-```
-PATH=/path/to/android/sdk/build-tools/xx.y.zz:$PATH redex [... arguments ...]
-```
 
 ## My app fails to install with `Failure [INSTALL_PARSE_FAILED_NO_CERTIFICATES]`
 
