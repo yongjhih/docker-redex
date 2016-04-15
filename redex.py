@@ -50,7 +50,7 @@ def log(*stuff):
 
 
 def find_android_build_tools():
-    VERSION_REGEXP = '\d+\.\d+(\.\d+)?'
+    VERSION_REGEXP = '\d+\.\d+(\.\d+)$'
     android_home = os.environ['ANDROID_SDK']
     build_tools = join(android_home, 'build-tools')
     version = max(
@@ -74,6 +74,12 @@ def run_pass(
         dexfiles,
         ):
 
+    if executable_path == '':
+        executable_path = shutil.which('redex-all')
+        if executable_path is None:
+            executable_path = join(dirname(abspath(__file__)), 'redex-all')
+    if not isfile(executable_path) or not os.access(executable_path, os.X_OK):
+        sys.exit('redex-all is not found or is not executable')
     log('Running redex binary at ' + executable_path)
 
     args = [executable_path] + [
@@ -471,7 +477,7 @@ def zipalign(unaligned_apk_path, output_apk_path):
         subprocess.check_call(zipalign +
                               ['4', unaligned_apk_path, output_apk_path])
     except:
-        print("Couldn't find zipalign.  Your APK may not be fully optimized.")
+        print("Couldn't find zipalign. See README.md to resolve this.")
         shutil.copy(unaligned_apk_path, output_apk_path)
     os.remove(unaligned_apk_path)
 
@@ -607,7 +613,7 @@ Given an APK, produce a better APK!
             help='Output APK file name (defaults to redex-out.apk)')
     parser.add_argument('-j', '--jarpath', nargs='?')
 
-    parser.add_argument('redex_binary', nargs='?', default='redex-all',
+    parser.add_argument('redex_binary', nargs='?', default='',
             help='Path to redex binary')
 
     parser.add_argument('-c', '--config', default=config,

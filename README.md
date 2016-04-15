@@ -22,6 +22,66 @@ $ curl -L https://github.com/yongjhih/docker-redex/raw/master/docker-redex > ~/b
 $ ~/bin/redex path/to/your.apk -o path/to/output.apk
 ```
 
+# FAQ
+
+## I'm getting "Couldn't find zipalign. See README.md to resolve this"
+
+`zipalign` is an optimization step that is bundled with the Android SDK.  You
+need to tell redex where to find it.  For example, if you installed the SDK at
+`/path/to/android/sdk`, try:
+```
+ANDROID_SDK=/path/to/android/sdk redex [... arguments ...]
+```
+You can alternatively add `zipalign` to your PATH, for example:
+```
+PATH=/path/to/android/sdk/build-tools/xx.y.zz:$PATH redex [... arguments ...]
+```
+
+## My app fails to install with `Failure [INSTALL_PARSE_FAILED_NO_CERTIFICATES]`
+
+After you run redex, you'll need to re-sign your app.  You can re-sign manually
+using these instructions:
+http://developer.android.com/tools/publishing/app-signing.html#signing-manually.
+
+You can also tell redex to sign for you.  If you want to sign with the debug
+key, you can simply do:
+
+```
+redex --sign [ ... arguments ...]
+```
+
+If you want to sign with your release key, you'll need to provide the
+appropriate args:
+
+```
+--sign Sign the apk after optimizing it
+-s [KEYSTORE], --keystore [KEYSTORE]
+-a [KEYALIAS], --keyalias [KEYALIAS]
+-p [KEYPASS], --keypass [KEYPASS]
+```
+
+## How does this compare to ProGuard?
+
+ReDex is conceptually similar to ProGuard, in that both optimize bytecode.
+ReDex, however, optimizes .dex bytecode, while ProGuard optimizes .class
+bytecode before it is lowered to .dex.  Operating on .dex is sometimes an
+advantage: you can consider the number of virtual registers used by a method
+that is an inlining candidate, and you can control the layout of classes within
+a dex file.  But ProGuard has many capabilities that ReDex does not (for
+example, ReDex will not remove unused method parameters, which ProGuard does).
+
+In our opinion, comparing ReDex and ProGuard is a bit apples-and-oranges, since
+we have focused on optimizations that add value on top of ProGuard.  We use both
+tools to optimize the Facebook app.  Our reported performance and size
+improvements (about 25% on both dex size and cold start time) are based on using
+ReDex on an app already optimized with ProGuard.  We have no plans to measure
+performance without ProGuard.
+
+## How about DexGuard?
+
+DexGuard operates on dex, but we haven't evaluated it at all since it's closed
+source.  We don't use it at Facebook and we have no plans to start.
+
 # More Information
 
 The blog [Optimizing Android bytecode with ReDex](https://code.facebook.com/posts/1480969635539475/optimizing-android-bytecode-with-redex) provides an overview of the Redex project.

@@ -12,7 +12,7 @@ AC_CONFIG_SUBDIRS([third-party/folly/folly])
 AC_PROG_CXX
 AC_PROG_CC
 
-AC_PROG_RANLIB
+LT_INIT
 
 AM_INIT_AUTOMAKE([subdir-objects])
 
@@ -26,9 +26,6 @@ AX_BOOST_BASE([1.54.0], [], [AC_MSG_ERROR(
 AX_BOOST_FILESYSTEM
 AX_BOOST_SYSTEM
 AC_CHECK_LIB([z], [adler32], [], [AC_MSG_ERROR([Please install zlib])])
-
-AC_HAVE_LIBRARY([glog],[],[AC_MSG_ERROR(
-                [Please install google-glog library])])
 
 # Checks for header files.
 AC_CHECK_HEADERS([arpa/inet.h fcntl.h inttypes.h memory.h netinet/in.h stddef.h stdint.h stdlib.h string.h sys/time.h unistd.h])
@@ -55,5 +52,9 @@ AC_FUNC_MMAP
 AC_FUNC_REALLOC
 AC_CHECK_FUNCS([clock_gettime gettimeofday memmove memset munmap regcomp strchr strdup strerror strrchr strstr strtol])
 
-AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([
+        Makefile
+        test/Makefile
+        test/integ/Makefile
+        test/unit/Makefile])
 AC_OUTPUT
