@@ -17,7 +17,7 @@ source.
 ### Docker
 
 ```sh
-$ curl -L https://github.com/yongjhih/docker-redex/raw/master/docker-redex > ~/bin/redex
+$ curl -L https://github.com/yongjhih/docker-redex/raw/master/docker-redex > ~/bin/redex && chmod a+x ~/bin/redex
 
 $ ~/bin/redex path/to/your.apk -o path/to/output.apk
 ```
