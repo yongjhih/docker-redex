@@ -26,10 +26,6 @@ RUN apt-get update && apt-get install -y git \
     libssl-dev \
     libiberty-dev && \
     git submodule update --init && \
-    mv /redex/third-party/folly /folly && \
-    cd /folly/folly && \
-    autoreconf -ivf && ./configure && make && make install && \
-    cd /redex && \
     autoreconf -ivf && ./configure && make && make install && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
