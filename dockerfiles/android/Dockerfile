@@ -1,11 +1,9 @@
-FROM ubuntu:14.04
+FROM yongjhih/android:23
 
 ADD . /redex
 
 WORKDIR /redex
 ENV LD_LIBRARY_PATH /usr/local/lib
-ENV ANDROID_HOME /opt/android-sdk-linux
-ENV ANDROID_SDK $ANDROID_HOME
 
 RUN apt-get update && apt-get install -y git \
     g++ \
