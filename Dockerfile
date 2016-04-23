@@ -1,5 +1,5 @@
 # Usage: docker run -it -v $ANDROID_SDK:/opt/android-sdk-linux -v $(pwd):/redex redex redex path/to/your.apk -o path/to/output.apk
-# Build: docker build --rm -t redex -f docker/Dockerfile .
+# Build: docker build --rm -t redex .
 FROM ubuntu:14.04
 
 RUN apt-get update && apt-get install -y git \
