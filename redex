@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Run docker-redex in a container
+# Run redex in a container
 #
 # This script will attempt to mirror the host paths by using volumes for the
 # following paths:
