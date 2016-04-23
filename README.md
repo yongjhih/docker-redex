@@ -29,6 +29,6 @@ $ ~/bin/redex path/to/your.apk -o path/to/output.apk
 This docker file will use current commit of redex.
 
 ```sh
-$ docker build --rm -t yongjhih/redex:android android .
+$ docker build --rm -t yongjhih/redex:android android
 $ ./redex path/to/your.apk -o path/to/output.apk
 ```
