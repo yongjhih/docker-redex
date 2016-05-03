@@ -13,9 +13,9 @@ generate-version() {
 
 	versionAliases=()
 	if [ "$version" == 'master' ]; then
-		echo "latest: ${url}@${commit} ."
+		echo "latest: ${url}@${commit}"
 	else
-		echo "${version}: ${url}@${commit} ."
+		echo "${version}: ${url}@${commit}"
 	fi
 }
 
