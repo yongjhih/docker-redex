@@ -23,7 +23,8 @@ RUN apt-get update && \
             libjemalloc-dev \
             libssl-dev \
             python3 \
-            libiberty-dev && \
+            libiberty-dev \
+            libjsoncpp-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     git clone https://github.com/facebook/redex /redex
